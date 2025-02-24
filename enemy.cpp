@@ -1,5 +1,17 @@
 #include "enemy.h"
 
+/*
+ *
+ * This is how the enemy class works. Apparently I can't just have everything in one file, rather have to
+ * Outline it in a header file.
+ * The Enemy Class needs 5 inputs in order to work
+ *
+ * inputs:
+ * (name, maxHealth, speed, damage, level)
+ * current health or rather just health is derived from maxHealth
+ *
+ */
+
 Enemy::Enemy(const std::string& enemyName, const int& maxHealth, const int& speed, const int& damage, const int& level) {
     this->name = enemyName;
     this->maxHealth = maxHealth;

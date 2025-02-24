@@ -5,6 +5,9 @@
 
 class Enemy {
 private:
+    /*
+     * Values are private in order to make sure values don't get changed.
+     */
     std::string name;
     int health;
     int maxHealth;
@@ -13,14 +16,15 @@ private:
     int level;
 
 public:
+    // constructor
     Enemy(const std::string& enemyName, const int& maxHealth, const int& speed, const int& damage, const int& level);
 
-    [[nodiscard]] std::string getName() const; // Added const for good practice
-    [[nodiscard]] int getHealth() const;
-    [[nodiscard]] int getMaxHealth() const;
-    [[nodiscard]] int getSpeed() const;
-    [[nodiscard]] int getDamage() const;
-    [[nodiscard]] int getLevel() const;
+    [[nodiscard]] std::string getName() const; // gives string Name of the enemy
+    [[nodiscard]] int getHealth() const;       // gives int Health of the enemy
+    [[nodiscard]] int getMaxHealth() const;    // gives int maxHealth of the enemy
+    [[nodiscard]] int getSpeed() const;        // gives int speed of the enemy
+    [[nodiscard]] int getDamage() const;       // gives int damage value of the enemy
+    [[nodiscard]] int getLevel() const;        // gives int level of the enemy
 };
 
 #endif // ENEMY_H

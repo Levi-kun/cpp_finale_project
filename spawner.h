@@ -1,13 +1,13 @@
 #ifndef SPAWNER_H
 #define SPAWNER_H
 
-#include <string>  // For std::string
-#include <cstdlib> // For rand()
-#include "enemy.h" // Include Enemy definition
+#include <string>
+#include <cstdlib>
+#include "enemy.h"
 
 class Spawner {
 public:
-    static Enemy createRandom(); // Declaration only
+    static Enemy createTrueRandom();
 };
 
-#endif // SPAWNER_H
+#endif
