@@ -17,7 +17,7 @@ private:
 
 public:
     // constructor
-    Enemy(const std::string& enemyName, const int& maxHealth, const int& speed, const int& damage, const int& level);
+    Enemy(const std::string& enemyName, int maxHealth, int speed, int damage, int level);
 
     [[nodiscard]] std::string getName() const; // gives string Name of the enemy
     [[nodiscard]] int getHealth() const;       // gives int Health of the enemy

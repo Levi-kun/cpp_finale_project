@@ -1,6 +1,6 @@
 #include <iostream>
+#include <ctime>
 #include "spawner.h"
-
 using namespace std;
 
 /*

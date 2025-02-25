@@ -12,7 +12,7 @@
  *
  */
 
-Enemy::Enemy(const std::string& enemyName, const int& maxHealth, const int& speed, const int& damage, const int& level) {
+Enemy::Enemy(const std::string& enemyName, int maxHealth, int speed, int damage, int level) {
     this->name = enemyName;
     this->maxHealth = maxHealth;
     this->speed = speed;
