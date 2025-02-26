@@ -21,6 +21,11 @@ Enemy::Enemy(const std::string& enemyName, int maxHealth, int speed, int damage,
     this->level = level;
 }
 
+int Enemy::takeDamage(int dmg) {
+    this->health -= dmg;
+    return this->health;
+}
+
 std::string Enemy::getName() const {
     return this->name;
 }
