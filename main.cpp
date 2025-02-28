@@ -2,6 +2,7 @@
 #include <ctime>
 #include "spawner.h"
 #include "enemy.h"
+#include "./Environment/environment.h"
 using namespace std;
 
 /*
@@ -23,6 +24,10 @@ int main() {
     if (action == 1) {
        cout << monster.takeDamage(5) << " damage" << endl;
     }
+
+    environment Plains = environment::createEnvironment(1,3,1);
+
+    cout << Plains.getMaxEvents();
 
 
     return 0;

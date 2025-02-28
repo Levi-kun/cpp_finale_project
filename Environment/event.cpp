@@ -1,6 +1,8 @@
 #include "event.h"
 #include "../spawner.h"
 #include <vector>
+#include "../enemy.h"
+#include "../spawner.h"
 
 /*
  * Set Methods
@@ -14,9 +16,6 @@ int event::setRewardsRarity(int rewardRarity) {
     this->rewardsRarity=rewardRarity;
     return rewardRarity;
 }
-
-#include "Enemy.h"
-#include "Spawner.h"
 
 Enemy* event::setEnemies(int amount) {
 
