@@ -6,7 +6,7 @@
 #define ENVIRONMENT_H
 
 /*
-int type = [swamp, ice mountain
+int type = [swamp, ice, mountain]
  */
 
 class environment {

@@ -16,7 +16,7 @@ int main() {
 
     Enemy monster = Spawner::createTrueRandom(); // Use Spawner to create a random enemy
     int action;
-    cout << "A level " << monster.getLevel() << " " << monster.getName() << " has spawned." << endl;
+    cout << "A level " << monster.getLevel() << " " << monster.getName() << " has spawned with the health of " << monster.getHealth() <<"."  << endl;
     cout << "1) Attack";
     cin >> action;
 

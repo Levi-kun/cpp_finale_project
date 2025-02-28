@@ -17,6 +17,8 @@ private:
 
 public:
     // constructor
+    Enemy() : name(""), health(0), maxHealth(0), speed(0), damage(0), level(0) {}
+
     Enemy(const std::string& enemyName, int maxHealth, int speed, int damage, int level);
 
     int takeDamage(int damage);                // Takes damage
