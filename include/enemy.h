@@ -15,13 +15,23 @@ private:
     int damage;
     int level;
 
+    int _focus;  // Secret Hidden Property!     Maybe will be used on ai behavior? just leaving this here for now...
+
 public:
     // constructor
     Enemy() : name(""), health(0), maxHealth(0), speed(0), damage(0), level(0) {}
 
     Enemy(const std::string& enemyName, int maxHealth, int speed, int damage, int level);
 
+    // Set functions --> functions that set the properties!!!
+    int setHealth(int health);
+    int setMaxHealth(int maxHealth);
+    int setSpeed(int speed);
+    int setDamage(int damage);
+    int setLevel(int level);
+    int setFocus (int focus);
 
+    //
     int takeDamage(int damage);                // Takes damage
 
     [[nodiscard]] std::string getName() const; // gives string Name of the enemy

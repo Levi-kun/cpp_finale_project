@@ -2,7 +2,6 @@
 #define SPAWNER_H
 
 #include <string>
-#include <cstdlib>
 #include <memory>
 #include "enemy.h"
 #include <map>
@@ -23,12 +22,13 @@ struct EnemyAttributes {
 
 class Spawner {
 private:
-    std::map<int, EnemyAttributes> difficultyMap;
+    std::map<int, EnemyAttributes> difficultyMap; // creates map objects for difficulty level stats... so difficulty 1 monster have blah blah health, blah blah speed, and blah blah damage
 public:
     Spawner();
-    EnemyAttributes getAttributes (int difficulty) const;
-    static Enemy createTrueRandom(); // create true random
-    std::unique_ptr<Enemy> spawnByDifficulty(int difficulty, const std::string& name) const;
+    [[nodiscard]] EnemyAttributes getAttributes (int difficulty) const;
+    static Enemy createTrueRandom();
+    unsigned long long addDifficultyMap(const std::map<int, EnemyAttributes>& newMap);
+    [[nodiscard]] std::unique_ptr<Enemy> spawnByDifficulty(int difficulty, const std::string& name, int focus = 0) const; // focus makes one value stand out more... 0 means nothing happens
 };
 
 #endif

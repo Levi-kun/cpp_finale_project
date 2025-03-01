@@ -23,7 +23,7 @@ Environment::Environment(int type, int maxEvents, int difficulty) {
 std::unique_ptr<Enemy[]> Environment::getMonsters(int amount) {
   auto monsters = std::make_unique<Enemy[]>(amount);
   for (int i = 0; i < amount; ++i) {
-    monsters[i] = Spawner::createTrueRandom();
+    monsters[i] = Spawner::spawnByDifficulty();
   }
   return monsters; // Transfers ownership to the caller
 }
