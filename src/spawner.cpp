@@ -19,20 +19,77 @@ EnemyAttributes Spawner::getAttributes(int difficulty) const {
     return (it != difficultyMap.end()) ? it->second : EnemyAttributes();
 }
 
-Enemy Spawner::createTrueRandom() {
-    const std::string names[4] = {"Goblin", "Skeleton", "Bandit", "Guardsman"};
-    const int randomNumber = rand() % 4;
-    return Enemy(names[randomNumber], 10, 20, 10, 1);
+unsigned long long Spawner::addDifficultyMap(const std::map<int, EnemyAttributes>& newMap) { // We can create our own difficulty Maps!
+    for (const auto& [key, value] : newMap) {
+        difficultyMap[key] = value;
+    }
+    return difficultyMap.size();
 }
 
-std::unique_ptr<Enemy> Spawner::spawnByDifficulty(int difficulty, const std::string& name) const {
+
+
+Enemy Spawner::createTrueRandom() {
+    const std::string names[5] = {"Goblin", "Skeleton", "Bandit", "Guardsman", "The Old"};
+    const int randomNumber = rand() % 5;
+    return Enemy(names[randomNumber], getRandom(1,999), getRandom(1,999), getRandom(1,999), getRandom(1,5));
+}
+
+std::unique_ptr<Enemy> Spawner::spawnByDifficulty(int difficulty, const std::string& name, int focus) const {
     EnemyAttributes attrs = getAttributes(difficulty);
 
-    return std::make_unique<Enemy>(
+    std::unique_ptr<Enemy> monster = std::make_unique<Enemy>(
         name,
         getRandom(attrs.minHealth, attrs.maxHealth),
         getRandom(attrs.minAttack, attrs.maxAttack),
         getRandom(attrs.minSpeed, attrs.maxSpeed),
         difficulty
     );
+    int increase;
+    int decreaseOne;
+    int decreaseTwo;
+    switch (focus) {
+        case 0:
+            break;
+        case 1:
+            increase = (monster->getHealth() * getRandom(10, 30)) / 100;
+            monster->setHealth(monster->getHealth() + increase);
+            break;
+        case 2:
+            increase = (monster->getDamage() * getRandom(10, 30)) / 100;
+            monster->setDamage(monster->getDamage() + increase);
+            break;
+        case 3:
+            increase = (monster->getSpeed() * getRandom(10, 30)) / 100;
+            monster->setSpeed(monster->getSpeed() + increase);
+            break;
+        case -1:
+                increase = (monster->getHealth() * getRandom(10, 50)) / 100;
+            decreaseOne = (monster->getDamage() * getRandom(10, 20)) / 100;
+            decreaseTwo = (monster->getSpeed() * getRandom(10, 20)) / 100;
+                monster->setHealth(monster->getHealth() - increase);
+            monster->setDamage(monster->getDamage() - decreaseOne);
+            monster->setSpeed(monster->getSpeed() + decreaseTwo);
+            break;
+        case -2:
+                increase = (monster->getDamage() * getRandom(10, 50)) / 100;
+            decreaseOne = (monster->getHealth() * getRandom(10, 20)) / 100;
+            decreaseTwo = (monster->getSpeed() * getRandom(10, 20)) / 100;
+            monster->setHealth(monster->getHealth() - decreaseOne);
+                monster->setDamage(monster->getDamage() + increase);
+            monster->setSpeed(monster->getSpeed() + decreaseTwo);
+            break;
+        case -3:
+                increase = (monster->getSpeed() * getRandom(10, 50)) / 100;
+            decreaseOne = (monster->getHealth() * getRandom(10, 20)) / 100;
+            decreaseTwo = (monster->getDamage() * getRandom(10, 20)) / 100;
+            monster->setHealth(monster->getHealth() - decreaseOne);
+            monster->setDamage(monster->getDamage() - decreaseTwo);
+                monster->setSpeed(monster->getSpeed() + increase);
+            break;
+        default:
+            break;
+
+    }
+
+    return monster;
 }

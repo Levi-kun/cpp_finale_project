@@ -5,9 +5,10 @@
 #include "enemy.h"
 #include <memory>
 
+
 class Environment {
 private:
-    int type;
+    int type;       // from 0 - 4
     int maxEvents;
     int difficulty;
     std::unique_ptr<event> randomEvents[4];
