@@ -1,44 +1,30 @@
-#include "event.h"
-#include "../spawner.h"
+#include "../include/event.h"
+#include "../include/spawner.h"
 #include <vector>
-#include "../enemy.h"
-#include "../spawner.h"
-
-/*
- * Set Methods
- */
+#include <memory>
 
 int event::setDifficulty(int difficulty) {
-    this->difficulty=difficulty;
+    this->difficulty = difficulty;
     return difficulty;
 }
+
 int event::setRewardsRarity(int rewardRarity) {
-    this->rewardsRarity=rewardRarity;
+    this->rewardsRarity = rewardRarity;
     return rewardRarity;
 }
 
-Enemy* event::setEnemies(int amount) {
-
-    Enemy* enemiesArray = new Enemy[amount];
-
+std::unique_ptr<Enemy[]> event::setEnemies(int amount) {
+    auto enemiesArray = std::make_unique<Enemy[]>(amount);
     for (int i = 0; i < amount; ++i) {
-
         enemiesArray[i] = Spawner::createTrueRandom();
     }
-
     return enemiesArray;
 }
-/*
- * Give methods
- */
-int *event::giveRewardsToPlayer() {
-    this->rewardsRarity=getRewardsRarity();
 
+int* event::giveRewardsToPlayer() {
+    this->rewardsRarity = getRewardsRarity();
+    return nullptr;
 }
-
-/*
- * Get Methods
- */
 
 int event::getType() {
     return this->type;
@@ -51,6 +37,3 @@ int event::getDifficulty() {
 int event::getRewardsRarity() {
     return this->rewardsRarity;
 }
-
-
-

@@ -1,4 +1,4 @@
-#include "enemy.h"
+#include "../include/enemy.h"
 
 /*
  *
@@ -17,7 +17,7 @@ Enemy::Enemy(const std::string& enemyName, int maxHealth, int speed, int damage,
     this->maxHealth = maxHealth;
     this->speed = speed;
     this->damage = damage;
-    this->health = maxHealth; // Initialize health to maxHealth
+    this->health = maxHealth;
     this->level = level;
 }
 

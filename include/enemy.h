@@ -21,6 +21,7 @@ public:
 
     Enemy(const std::string& enemyName, int maxHealth, int speed, int damage, int level);
 
+
     int takeDamage(int damage);                // Takes damage
 
     [[nodiscard]] std::string getName() const; // gives string Name of the enemy
