@@ -19,30 +19,22 @@ void printMemoryUsage() {
 int main() {
     srand(time(nullptr));
 
-    Enemy monster = Spawner::createTrueRandom();
-    cout << "A level " << monster.getLevel() << " " << monster.getName() << " has spawned with the health of " << monster.getHealth() << "." << endl;
+    Environment plains(1,1,1);
 
-    int action;
-    cout << "1) Attack: ";
-    cin >> action;
-
-    if (action == 1) {
-        cout << monster.takeDamage(5) << " damage" << endl;
+    Enemy monster = plains.getMonsters(1)[0];
+    cout << monster.getName() << " | " << monster.getHealth() << " HP | " << monster.getDamage() << endl; // gives name of a monster created by the plain's environment.
+    while (monster.getHealth() > 0) {
+        int action = 0;
+        cout << monster.getName() << " | " << monster.getHealth();
+        cout << "\n1. to Deal Damage";
+        cin >> action;
+        switch (action) {
+            case 1:
+                monster.takeDamage(5);
+                break;
+            default:
+                break;
+        }
     }
-
-    const Spawner spawner;
-    auto specialMonster = spawner.spawnByDifficulty(1, "Nino");
-    cout << "A special monster: " << specialMonster->getName() << " with " << specialMonster->getHealth() << " HP." << endl;
-
-    const Environment Plains(1, 3, 1);
-    cout << "Max Events: " << Plains.getMaxEvents() << endl;
-    printMemoryUsage();
-    cout << "1) Attack: ";
-    cin >> action;
-
-    if (action == 1) {
-        cout << specialMonster->takeDamage(5) << " damage" << endl;
-    }
-    cin >> action;
     return 0;
 }
