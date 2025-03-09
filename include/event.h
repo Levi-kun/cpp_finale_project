@@ -2,27 +2,32 @@
 #define EVENT_H
 
 #include "../include/spawner.h"
-#include <vector>
 #include <memory>
+#include <string>
 
 class event {
 private:
     int type;
     int difficulty;
     int rewardsRarity;
+    std::unique_ptr<Enemy[]> enemies; // Received from Environment
+    int enemyCount;
 
 public:
-    event(int type, int difficulty = 0, int rewardsRarity = 0);
+    event(int type, int difficulty = 0, int rewardsRarity = 0, std::unique_ptr<Enemy[]> enemies = nullptr, int enemyCount = 0);
 
+    // Setters
     int setDifficulty(int difficulty);
     int setRewardsRarity(int rewardRarity);
-    std::unique_ptr<Enemy[]> setEnemies(int amount = 1);
+    void setEnemies(std::unique_ptr<Enemy[]> enemies, int amount); // Grabs enemies from Environment
 
+    // Getters
     int getType();
     int getDifficulty();
     int getRewardsRarity();
+    std::string getEnemyNames() const; // New: display enemy names
 
-    int* giveRewardsToPlayer();
+    std::unique_ptr<int> giveRewardsToPlayer();
 };
 
 #endif // EVENT_H
